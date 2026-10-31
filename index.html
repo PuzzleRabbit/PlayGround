@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#140c0a">
+  <meta name="description" content="WAMMER DUDES — a hand-drawn stone age beat-'em-up. Club the Bonefang tribe, survive Fire Valley, and wam the Mammoth Mog.">
+  <title>WAMMER DUDES — Stone Age Beat-'Em-Up</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%23140c0a'/><circle cx='32' cy='30' r='13' fill='%23ffcf4d'/><path d='M10 56h44' stroke='%23ff7a2f' stroke-width='6' stroke-linecap='round'/></svg>">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main id="shell">
+    <div id="frame">
+      <canvas id="game" width="960" height="540" aria-label="WAMMER DUDES stone age beat-em-up game"></canvas>
+
+      <div id="overlay">
+        <section id="screen-title" class="screen screen-title">
+          <div class="title-scrim"></div>
+          <div class="title-lockup">
+            <p class="eyebrow">FIRE VALLEY <span>·</span> 40,000 BC</p>
+            <h1 class="logo" aria-label="Wammer Dudes">
+              <span class="logo-line logo-wammer">WAMMER</span>
+              <span class="logo-line logo-dudes">DUDES<span class="logo-bang">!</span></span>
+            </h1>
+            <p class="tagline">A STONE AGE BEAT-'EM-UP</p>
+            <button id="start-btn" class="bone-btn" type="button">START SMASHING</button>
+            <div class="control-row" aria-label="Controls">
+              <div class="control"><kbd>WASD</kbd><span>MOVE</span></div>
+              <div class="control"><kbd>J</kbd><span>BONK</span></div>
+              <div class="control"><kbd>K</kbd><span>JUMP</span></div>
+              <div class="control"><kbd>L</kbd><span>RAGE</span></div>
+            </div>
+            <p class="hint">Crush the Bonefang tribe. Rescue the valley.<br>Try not to get bonked.</p>
+          </div>
+          <div class="corner-note">HIGH SCORE <span id="hs-title">000000</span></div>
+          <div class="version-note">WAMMER DUDES · 1 PLAYER</div>
+        </section>
+
+        <section id="screen-pause" class="screen screen-center hidden">
+          <div class="stone-panel">
+            <p class="kicker">TAKE A BREATH</p>
+            <h2 class="panel-title">PAUSED</h2>
+            <button id="resume-btn" class="bone-btn small" type="button">BACK TO BONKING</button>
+            <p class="panel-hint"><kbd>P</kbd> or <kbd>ESC</kbd> to resume · <kbd>M</kbd> mute</p>
+          </div>
+        </section>
+
+        <section id="screen-over" class="screen screen-center hidden">
+          <div class="stone-panel">
+            <p class="kicker">THE TRIBE GOT YOU</p>
+            <h2 class="panel-title red">BONKED OUT</h2>
+            <div class="stat-row"><span>SCORE</span><strong id="final-score">000000</strong></div>
+            <div class="stat-row small-row"><span>BEST</span><strong id="best-score">000000</strong></div>
+            <button id="retry-btn" class="bone-btn small" type="button">RAISE ANOTHER CLUB</button>
+            <p class="panel-hint">The valley still needs a hero.</p>
+          </div>
+        </section>
+
+        <section id="screen-win" class="screen screen-center hidden">
+          <div class="stone-panel win-panel">
+            <p class="kicker">MAMMOTH MOG IS TOAST</p>
+            <h2 class="panel-title gold">VALLEY SAVED</h2>
+            <div class="stat-row"><span>SCORE</span><strong id="win-score">000000</strong></div>
+            <div class="stat-row small-row"><span>BEST</span><strong id="win-best">000000</strong></div>
+            <button id="again-btn" class="bone-btn small" type="button">BONK AGAIN</button>
+            <p class="panel-hint">The tribe will sing of this for at least a week.</p>
+          </div>
+        </section>
+      </div>
+
+      <button id="mute-btn" class="mute-btn" type="button" aria-label="Mute sound" title="Mute (M)">
+        <span class="mute-on">♪</span><span class="mute-off">♪̸</span>
+      </button>
+
+      <div id="touch-controls" aria-hidden="true">
+        <div id="joystick"><div id="stick-knob"></div></div>
+        <div class="touch-buttons">
+          <button class="touch-btn rage" data-action="special" type="button">RAGE</button>
+          <button class="touch-btn jump" data-action="jump" type="button">JUMP</button>
+          <button class="touch-btn bonk" data-action="attack" type="button">BONK</button>
+        </div>
+      </div>
+    </div>
+    <p class="outside-hint">Best with sound on. Keyboard or touch. <span>·</span> Made with sticks, stones, and canvas.</p>
+  </main>
+  <script type="module" src="./src/game.js"></script>
+</body>
+</html>
