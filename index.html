@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Covenant — The Last Bastion</title>
+  <meta name="description" content="A mythic survival tower defense: guard the last gate against the old gods, giants, and plagues of a drowned world." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1220'/%3E%3Cpath d='M32 9 53 18v14c0 11-8.3 18.7-21 23-12.7-4.3-21-12-21-23V18Z' fill='none' stroke='%23e7c477' stroke-width='3'/%3E%3Cpath d='M32 21v21M24 30h16' stroke='%23e7c477' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5.4" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><path d="M12 7.2v9.6M9.7 9.4h3.9a1.9 1.9 0 0 1 0 3.8h-3.2a1.9 1.9 0 0 0 0 3.8h4.1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 2.8 20 6v6.1c0 4.5-3.2 7.6-8 9.1-4.8-1.5-8-4.6-8-9.1V6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 7v7M8.8 10.5h6.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+      <symbol id="icon-wave" viewBox="0 0 24 24"><path d="M3 9c2.4-2.4 4.8-2.4 7.2 0s4.8 2.4 7.2 0 3.3-2.3 3.6-2.1M3 15c2.4-2.4 4.8-2.4 7.2 0s4.8 2.4 7.2 0 3.3-2.3 3.6-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 2.5c.6 4.4 4.9 5.6 4.9 10a4.9 4.9 0 0 1-9.8 0c0-2.2 1.2-3.5 2.2-4.7.4 1.5 1.1 2.3 2.1 2.8C11 8 10.9 5.4 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 21.5v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+      <symbol id="icon-serpent" viewBox="0 0 24 24"><path d="M5 20.5V8.8A4.3 4.3 0 0 1 9.3 4.5h3.3M5 12.5h7a3.4 3.4 0 0 1 0 6.8H7.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="17.2" cy="4.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.8" cy="4" r=".55" fill="currentColor"/></symbol>
+      <symbol id="icon-bow" viewBox="0 0 24 24"><path d="M4 20 20 4M6.5 4.5C12 6 18 12 19.5 17.5M4.5 6.5C6 12 12 18 17.5 19.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="m14.6 4.4 5 5M4.4 14.6l5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="12" cy="12" r="2.1" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+      <symbol id="icon-seal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".7"/><path d="m12 4.2 2.3 5.5 5.5 2.3-5.5 2.3L12 19.8l-2.3-5.5L4.2 12l5.5-2.3Z" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
+      <symbol id="icon-well" viewBox="0 0 24 24"><ellipse cx="12" cy="7.5" rx="7" ry="3.1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 7.5v9c0 1.7 3.1 3.1 7 3.1s7-1.4 7-3.1v-9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.2 14.2c1.1-.9 2.2-.9 3.3 0s2.2.9 3.3 0 2.2-.9 3.3 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".8"/></symbol>
+      <symbol id="icon-reliquary" viewBox="0 0 24 24"><path d="M3.5 9 12 4l8.5 5v10L12 23l-8.5-4Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M3.5 9 12 13.5 20.5 9M12 13.5V23" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".8"/><path d="m12 7 1 2 2 .9-2 1-1 2-1-2-2-1 2-.9Z" fill="currentColor" opacity=".75"/></symbol>
+      <symbol id="icon-oracle" viewBox="0 0 24 24"><path d="M2.6 12S6 6.2 12 6.2 21.4 12 21.4 12 18 17.8 12 17.8 2.6 12 2.6 12Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="12" r="1.1" fill="currentColor"/><path d="M12 2.2v2M4 4l1.5 1.5M20 4l-1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></symbol>
+      <symbol id="icon-skull" viewBox="0 0 24 24"><path d="M12 2.8c-5 0-8 3.4-8 7.7 0 2.7 1.3 4.4 2.8 5.4V20h3l.7-2.2h3l.7 2.2h3v-4.1c1.5-1 2.8-2.7 2.8-5.4 0-4.3-3-7.7-8-7.7Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/><circle cx="15" cy="10" r="1.5" fill="currentColor"/><path d="M11 14.6h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z" fill="currentColor"/></symbol>
+      <symbol id="icon-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M15.5 9a4.3 4.3 0 0 1 0 6M18 6.5a7.7 7.7 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+      <symbol id="icon-mute" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m16 9 5 5M21 9l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+      <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 9.2a2.5 2.5 0 0 1 4.9.5c0 1.8-2.4 2-2.4 3.7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r=".9" fill="currentColor"/></symbol>
+      <symbol id="icon-speed" viewBox="0 0 24 24"><path d="m4 6 7 6-7 6M13 6l7 6-7 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2.5c3.8 2.5 5.3 6.3 4.6 10.4L12 18l-4.6-5.1C6.7 8.8 8.2 5 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="12" cy="8" r="1.9" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8.8 16.5 6.5 21l4-1.3M15.2 16.5l2.3 4.5-4-1.3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-smite" viewBox="0 0 24 24"><path d="M12 2v7M8.5 5 12 8.8 15.5 5M5.5 12.5 12 21l6.5-8.5M9 15h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-beam" viewBox="0 0 24 24"><path d="M3 20 21 4M6 19l-2-2M13.5 11.5l-2-2M17 8l-2-2M20 5l-2-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="icon-wrath" viewBox="0 0 24 24"><path d="m12 2 2 5.2L19 5l-2.2 4.6L22 12l-5.2 2L19 19l-5-2.2L12 22l-2-5.2L5 19l2.2-4.9L2 12l5.2-2L5 5l5 2.2Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.2" fill="currentColor" opacity=".75"/></symbol>
+      <symbol id="icon-fist" viewBox="0 0 24 24"><path d="M7 11V6.8a1.8 1.8 0 0 1 3.6 0V10m0-4.6a1.8 1.8 0 0 1 3.6 0V10m0-3.8a1.8 1.8 0 0 1 3.6 0V14c0 4.4-2.7 7-6.6 7-2.2 0-3.8-.8-5-2.4L3 14.2a1.9 1.9 0 0 1 3-2.3L7.8 14" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-wing" viewBox="0 0 24 24"><path d="M12 18C7 18 3 14 3 6c4 1 6 3 9 7 3-4 5-6 9-7 0 8-4 12-9 12Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 13v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+      <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5C6.7 17.2 3.5 13.8 3.5 9.9 3.5 6.9 5.8 5 8.4 5c1.6 0 3 .8 3.6 2 .7-1.2 2-2 3.6-2 2.6 0 4.9 1.9 4.9 4.9 0 3.9-3.2 7.3-8.5 10.6Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-storm" viewBox="0 0 24 24"><path d="M13 2 5 13h5l-1 9 8-12h-5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 6.5 12 6.5 21.5 12 21.5 12 18 17.5 12 17.5 2.5 12 2.5 12Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="3" fill="currentColor"/></symbol>
+      <symbol id="icon-trumpet" viewBox="0 0 24 24"><path d="M4 10h6l8-5v14l-8-5H4Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 14v5M10 15v3M18 5l3-2M18 19l3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+      <symbol id="icon-hourglass" viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 4 2.4 6 5 9-2.6 3-5 5-5 9M17 3c0 4-2.4 6-5 9 2.6 3 5 5 5 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-leaf" viewBox="0 0 24 24"><path d="M20 4C10 3 4 8 4 15c0 2.5 1.6 4.4 4.2 4.4C15 19.4 20 13 20 4Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5.5 19.5C8 14 12 10 17 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+      <symbol id="icon-stone" viewBox="0 0 24 24"><path d="m12 3 7 4.2v8.2L12 21l-7-5.6V7.2Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8.5 9.5h7M9 13.5h6M11 17h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></symbol>
+      <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M18.5 15.5 19.3 18l2.5.8-2.5.8-.8 2.5-.8-2.5-2.5-.8 2.5-.8Z" fill="currentColor" opacity=".7"/></symbol>
+      <symbol id="icon-gate" viewBox="0 0 24 24"><path d="M5 21V8.5L12 3l7 5.5V21M5 21h14M8.5 21v-7.5a3.5 3.5 0 0 1 7 0V21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="icon-upgrade" viewBox="0 0 24 24"><path d="M12 20V5M6.5 10.5 12 5l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-sell" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.5 12h7M12 8.5v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+      <symbol id="icon-sword" viewBox="0 0 24 24"><path d="m4 20 4-4M9 15l10-10 2 2-10 10-2-2ZM6 16l2 2M13 5l6 6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 4.5h6a2 2 0 0 1 2 2V21a2 2 0 0 0-2-2H4ZM20 4.5h-6a2 2 0 0 0-2 2V21a2 2 0 0 1 2-2h6Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+      <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <div id="app">
+    <canvas id="game" aria-label="The besieged sanctuary and the pilgrim road"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="hud hidden" id="hud">
+      <div class="brand">
+        <span class="brand-mark">✦</span>
+        <div class="brand-text">
+          <strong>COVENANT</strong>
+          <small>The Last Bastion</small>
+        </div>
+      </div>
+
+      <div class="resources">
+        <div class="res" title="Gold">
+          <svg class="icon"><use href="#icon-coin"/></svg>
+          <div class="res-body"><span>Gold</span><strong id="goldValue">0</strong></div>
+        </div>
+        <div class="res" title="Sanctuary seals">
+          <svg class="icon"><use href="#icon-shield"/></svg>
+          <div class="res-body"><span>Seals</span><strong><b id="sealValue">20</b><small>/20</small></strong></div>
+        </div>
+        <div class="res wave-res" title="Current wave">
+          <svg class="icon"><use href="#icon-wave"/></svg>
+          <div class="res-body"><span>Wave</span><strong><b id="waveValue">1</b><small>/20</small></strong></div>
+        </div>
+      </div>
+
+      <div class="hud-actions">
+        <button class="icon-btn" id="speedBtn" title="Game speed (F)" aria-label="Toggle game speed"><span id="speedLabel">1×</span></button>
+        <button class="icon-btn" id="muteBtn" title="Sound (M)" aria-label="Toggle sound"><svg class="icon"><use href="#icon-sound"/></svg></button>
+        <button class="icon-btn" id="helpBtn" title="How to play (H)" aria-label="How to play"><svg class="icon"><use href="#icon-help"/></svg></button>
+        <button class="icon-btn" id="pauseBtn" title="Pause (P)" aria-label="Pause"><svg class="icon"><use href="#icon-pause"/></svg></button>
+      </div>
+    </header>
+
+    <div class="wave-progress hidden" id="waveProgress"><i></i></div>
+
+    <div id="waveBanner" class="wave-banner" aria-live="polite">
+      <span class="banner-eyebrow"></span>
+      <strong class="banner-title"></strong>
+      <em class="banner-lore"></em>
+    </div>
+
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+
+    <aside class="shop hidden" id="shop" aria-label="Armory">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow">The Armory</span>
+          <h2>Guard the Gate</h2>
+        </div>
+        <button class="icon-btn mobile-only" id="shopClose" aria-label="Close armory"><svg class="icon"><use href="#icon-close"/></svg></button>
+      </div>
+
+      <div class="selected-panel hidden" id="selectedPanel"></div>
+
+      <div class="shop-scroll">
+        <section class="shop-section">
+          <h3>Guardians <span>Fire from the runes</span></h3>
+          <div class="cards" id="towerCards"></div>
+        </section>
+        <section class="shop-section">
+          <h3>Sanctum <span>Gold at every wave</span></h3>
+          <div class="cards" id="econCards"></div>
+        </section>
+      </div>
+
+      <div class="shop-foot">
+        <span><kbd>1</kbd>–<kbd>7</kbd> choose</span>
+        <span><kbd>Esc</kbd> cancel</span>
+        <span><kbd>Space</kbd> horn</span>
+      </div>
+    </aside>
+
+    <button class="mobile-only armory-btn" id="armoryBtn" aria-label="Open armory">
+      <svg class="icon"><use href="#icon-sword"/></svg>
+      <span>Armory</span>
+    </button>
+
+    <section class="hero-bar hidden" id="heroBar" aria-label="The Covenant Bearer">
+      <div class="hero-id">
+        <div class="portrait">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="30" fill="none" stroke="rgba(232,201,122,.45)" stroke-width="1"/>
+            <path d="M32 10a13 13 0 0 1 13 13c0 8-6 11-6 17l-7 12-7-12c0-6-6-9-6-17A13 13 0 0 1 32 10Z" fill="rgba(232,201,122,.12)" stroke="rgba(232,201,122,.7)" stroke-width="1.2"/>
+            <circle cx="32" cy="26" r="7" fill="rgba(245,238,220,.7)"/>
+            <path d="M23 47c2-6 5-9 9-9s7 3 9 9" fill="rgba(245,238,220,.35)"/>
+            <circle cx="32" cy="32" r="25" fill="none" stroke="rgba(126,232,210,.25)" stroke-width=".8" stroke-dasharray="2 4"/>
+          </svg>
+          <span class="portrait-level">LV <b id="heroLevel">1</b></span>
+        </div>
+        <div class="hero-copy">
+          <div class="hero-title">The Covenant Bearer</div>
+          <div class="hero-sub"><span id="boonCount">No blessings yet</span></div>
+          <div class="bars">
+            <div class="bar hp"><i id="hpFill"></i><span id="hpText">220 / 220</span></div>
+            <div class="bar mana"><i id="manaFill"></i><span id="manaText">100 / 100</span></div>
+          </div>
+          <div class="xp-row"><span id="xpText">0 / 55 XP</span><span class="xp-track"><i id="xpFill"></i></span></div>
+        </div>
+      </div>
+
+      <div class="abilities" id="abilities"></div>
+
+      <div class="wave-control">
+        <div class="wave-meta">
+          <span class="eyebrow" id="phaseLabel">Preparation</span>
+          <b id="waveTitle">The First Flight</b>
+          <small id="wavePreview">8 locusts</small>
+        </div>
+        <button class="horn" id="hornBtn">
+          <span class="horn-glow"></span>
+          <span class="horn-text"><b>Sound the Horn</b><small>Begin wave 1</small></span>
+          <svg class="icon"><use href="#icon-chevron"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <div class="tooltip hidden" id="tooltip" role="status"></div>
+
+    <div class="overlay title-overlay" id="titleOverlay">
+      <div class="title-scrim"></div>
+      <div class="title-inner">
+        <span class="eyebrow">A mythic survival saga</span>
+        <h1 class="logo" aria-label="Covenant">COVENANT</h1>
+        <div class="logo-rule"><span></span><i>✦</i><span></span></div>
+        <h2>The Last Bastion</h2>
+        <p class="lede">
+          The Flood has taken the world. The old myths have come to finish it.
+          Raise guardians on the runes, grow your sanctum, and hold the final gate
+          for twenty waves.
+        </p>
+        <div class="title-actions">
+          <button class="btn primary" id="startBtn">
+            <span>Enter the Sanctuary</span>
+            <svg class="icon"><use href="#icon-chevron"/></svg>
+          </button>
+          <button class="btn ghost" id="howBtn">
+            <svg class="icon"><use href="#icon-book"/></svg>
+            <span>How to Play</span>
+          </button>
+        </div>
+        <div class="feature-row">
+          <span>20 waves</span><i>✦</i>
+          <span>7 relics</span><i>✦</i>
+          <span>9 mythic foes</span><i>✦</i>
+          <span>roguelite blessings</span>
+        </div>
+        <div class="best-badge hidden" id="bestBadge"></div>
+      </div>
+      <div class="title-foot">Everything you see is drawn and scored in your browser.</div>
+    </div>
+
+    <div class="overlay hidden" id="boonOverlay">
+      <div class="modal boon-modal">
+        <span class="eyebrow">The covenant deepens</span>
+        <h2>Choose a Blessing</h2>
+        <p class="modal-sub">The Bearer has risen to <b id="boonLevel">level 2</b>. Take one gift.</p>
+        <div class="boons" id="boonCards"></div>
+        <div class="modal-foot">Click a blessing, or press <kbd>1</kbd>–<kbd>3</kbd>.</div>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="pauseOverlay">
+      <div class="modal small">
+        <span class="eyebrow">The siege holds its breath</span>
+        <h2>Paused</h2>
+        <p class="modal-sub">The road waits. The horde does not.</p>
+        <div class="modal-actions">
+          <button class="btn primary" id="resumeBtn">Resume</button>
+          <button class="btn ghost" id="pauseHelpBtn">How to Play</button>
+          <button class="btn ghost danger" id="pauseRestartBtn">Restart Run</button>
+        </div>
+        <div class="modal-foot">Press <kbd>P</kbd> or <kbd>Esc</kbd> to resume.</div>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="endOverlay">
+      <div class="modal end-modal">
+        <span class="eyebrow" id="endEyebrow">The gate holds</span>
+        <h2 id="endTitle">The Gate Endures</h2>
+        <p class="modal-sub" id="endSub"></p>
+        <div class="end-stats" id="endStats"></div>
+        <div class="modal-actions">
+          <button class="btn primary" id="retryBtn">Begin a New Run</button>
+          <button class="btn ghost" id="endTitleBtn">Return to Title</button>
+        </div>
+        <div class="modal-foot" id="endFoot"></div>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="helpOverlay">
+      <div class="modal help-modal">
+        <button class="icon-btn close-modal" id="helpClose" aria-label="Close"><svg class="icon"><use href="#icon-close"/></svg></button>
+        <span class="eyebrow">Field manual</span>
+        <h2>Hold the Gate</h2>
+        <p class="modal-sub">Twenty waves. One covenant. No second sanctuary.</p>
+        <div class="help-grid">
+          <section>
+            <h3><svg class="icon"><use href="#icon-gate"/></svg> The siege</h3>
+            <p>Enemies follow the pilgrim road to the Gate. Each one that reaches it breaks a seal. At zero seals, the sanctuary falls.</p>
+            <h3><svg class="icon"><use href="#icon-sword"/></svg> Guardians</h3>
+            <p>Choose a relic in the Armory, then click a glowing rune pad. Guardians fire on their own. Click a built guardian to upgrade or sell it.</p>
+            <h3><svg class="icon"><use href="#icon-coin"/></svg> Sanctum</h3>
+            <p>Build Manna Wells, Reliquaries, and Oracle Tents in the four sanctum courts near the Gate. They pay gold at the end of every wave.</p>
+          </section>
+          <section>
+            <h3><svg class="icon"><use href="#icon-spark"/></svg> The Bearer</h3>
+            <p>Move with <kbd>WASD</kbd> or click the ground. The Bearer attacks nearby foes automatically. Level up to choose roguelite blessings.</p>
+            <h3><svg class="icon"><use href="#icon-wrath"/></svg> Abilities</h3>
+            <div class="key-list">
+              <div><kbd>Q</kbd><span><b>Smite</b> — fire on the thickest press.</span></div>
+              <div><kbd>C</kbd><span><b>Aegis</b> — shield and mend.</span></div>
+              <div><kbd>E</kbd><span><b>Judgement</b> — a lance of light.</span></div>
+              <div><kbd>R</kbd><span><b>Wrath</b> — scorch the whole field (level 4).</span></div>
+            </div>
+            <h3><svg class="icon"><use href="#icon-hourglass"/></svg> Controls</h3>
+            <div class="key-list">
+              <div><kbd>1</kbd>–<kbd>7</kbd><span>Select a relic</span></div>
+              <div><kbd>Space</kbd><span>Sound the horn</span></div>
+              <div><kbd>P</kbd><span>Pause</span></div>
+              <div><kbd>F</kbd><span>Toggle speed</span></div>
+              <div><kbd>M</kbd><span>Mute</span></div>
+            </div>
+          </section>
+        </div>
+        <div class="help-tip">
+          <strong>A small counsel:</strong> slow effects are worth their weight in gold. A Seal beside a Ballista turns a road into a killing ground.
+        </div>
+        <div class="modal-actions"><button class="btn primary" id="helpDone">Return to the Siege</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="orientation-screen" id="rotateOverlay" role="status" aria-live="polite">
+    <div class="orientation-card">
+      <div class="orientation-mark">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="20" y="8" width="26" height="46" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M34 11h7M39 48.5h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M52 25c4.8 7.3 4.8 14.2 0 21M10 34c-2.7-6.3-1.1-12.4 4-18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 5"/>
+        </svg>
+      </div>
+      <span class="eyebrow">The field is wider than it is tall</span>
+      <h2>Turn the device</h2>
+      <p>COVENANT is fought in landscape. Rotate your phone or tablet to raise the gate.</p>
+      <span class="orientation-hint">The siege waits for you</span>
+    </div>
+  </div>
+
+  <script type="module" src="./src/game.js"></script>
+</body>
+</html>
