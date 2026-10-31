@@ -115,6 +115,7 @@ function playerBounds(game, player) {
 function startAttack(game, step) {
   const player = game.player
   const attack = ATTACKS[step]
+  if (Math.abs(game.input.ax) > 0.15) player.facing = game.input.ax > 0 ? 1 : -1
   player.state = 'attack'
   player.stateT = 0
   player.attackT = 0
@@ -244,12 +245,10 @@ export function updatePlayer(game, dt) {
     if (player.jumpY <= 0) {
       player.jumpY = 0
       player.vy = 0
-      if (player.state === 'jump') {
-        player.state = 'idle'
-        game.audio.sfx('land')
-        game.fx.dust(player.x, player.z, 6)
-        game.shake = Math.max(game.shake, 1.8)
-      }
+      if (player.state === 'jump') player.state = 'idle'
+      game.audio.sfx('land')
+      game.fx.dust(player.x, player.z, 6)
+      game.shake = Math.max(game.shake, 1.8)
     }
   }
 
@@ -286,6 +285,17 @@ export function updatePlayer(game, dt) {
     const attack = ATTACKS[player.comboStep] || ATTACKS[0]
     player.attackT += dt
     player.attackP = clamp(player.attackT / player.attackDur, 0, 1)
+
+    // steer while swinging: full lunge on the ground, drifting control in the air
+    const ax = input.ax
+    const az = input.az
+    if (Math.hypot(ax, az) > 0.12) {
+      const drift = player.jumpY > 0 ? 0.72 : 0.4
+      const length = Math.max(1, Math.hypot(ax, az))
+      player.x += (ax / length) * PLAYER_SPEED * drift * dt
+      player.z = clamp(player.z + (az / length) * PLAYER_Z_SPEED * drift * dt, 0, 1)
+    }
+
     if (player.attackP < 0.55) player.x += player.facing * 56 * dt
     if (!player.didHit && player.attackP >= attack.hitAt) {
       player.didHit = true
@@ -320,7 +330,7 @@ export function updatePlayer(game, dt) {
     game.fx.dust(player.x, player.z, 5)
   }
 
-  if (grounded && attackPressed) {
+  if (attackPressed) {
     player.stateT = 0
     startAttack(game, 0)
     return
